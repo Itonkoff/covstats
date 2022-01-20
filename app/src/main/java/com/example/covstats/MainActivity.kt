@@ -3,6 +3,7 @@ package com.example.covstats
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.covstats.viewmodels.StatsViewModel
@@ -15,6 +16,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         viewModel.getAllStats()
-        viewModel.check()
+
+        viewModel.apiResponse.observe(this, Observer{response->
+            viewModel.clearDb()
+            viewModel.updateDb(response)
+        })
     }
 }

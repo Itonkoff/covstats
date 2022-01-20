@@ -49,6 +49,8 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:$room_version"
     // To use Kotlin annotation processing tool (kapt)
     kapt("androidx.room:room-compiler:$room_version")
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation("androidx.room:room-ktx:$room_version")
 
     // retrofit
     def retrofit_version = "2.9.0"
@@ -60,5 +62,9 @@ dependencies {
 
     // ktx support for activity
     implementation "androidx.activity:activity-ktx:1.4.0"
+
+    def versions_work= "2.5.0"
+    // WorkManager dependency
+    implementation "androidx.work:work-runtime-ktx:$versions_work"
 
 }
