@@ -11,7 +11,9 @@ class ClearDbWorker(context: Context,params:WorkerParameters): Worker(context,pa
     override fun doWork(): Result {
         val appContext = applicationContext
         return try {
+            Log.d(TAG, "doWork: Starting to clear db")
             Db.getDatabase(appContext).clearAllTables()
+            Log.d(TAG, "doWork: Finished clearing db")
             Result.success()
         }catch (throwable: Throwable) {
             Log.e(TAG, "Error clearing db")
