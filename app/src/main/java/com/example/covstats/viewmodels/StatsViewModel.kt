@@ -3,6 +3,7 @@ package com.example.covstats.viewmodels
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.work.OneTimeWorkRequest
@@ -18,10 +19,12 @@ class StatsViewModel(application: Application) : AndroidViewModel(application) {
     private val TAG = "StatsViewModel"
     var apiResponse = MutableLiveData<ApiResponse>()
     var dao = Db.getDatabase(application).statisticDao()
+    val statistics = dao.selectAllStatistics()
+    var statistic = MutableLiveData<Statistic>()
 
     private val workManager = WorkManager.getInstance(application)
 
-    fun getAllStats() {
+    fun getUpdatedStatsFromNetwork() {
         Log.d(TAG, "getAllStats: Launching call to API")
         viewModelScope.launch {
             apiResponse.value = RetrofitClient.API_SERVICE.getAllStats()
@@ -50,5 +53,10 @@ class StatsViewModel(application: Application) : AndroidViewModel(application) {
                 dao.insertStatistic(statistic)
             }
         }
+    }
+
+    fun setSelectedCountry(item: Any) {
+        val s = item as String
+        statistic.value = statistics.value?.first { it.country.startsWith(s) }
     }
 }
