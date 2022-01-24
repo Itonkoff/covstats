@@ -1,10 +1,10 @@
-package com.example.covstats.room
+package com.example.covstats.data.room
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.example.covstats.room.models.Statistic
+import com.example.covstats.data.room.models.Statistic
 
 @Dao
 interface Dao {
@@ -14,7 +14,4 @@ interface Dao {
 
     @Insert
     suspend fun insertStatistic(statistic: Statistic)
-
-    @Query("SELECT * FROM Statistic WHERE country LIKE :item")
-    fun selectStatisticByCountry(item: String): LiveData<Statistic>
 }

@@ -1,4 +1,4 @@
-package com.example.covstats.retrofit
+package com.example.covstats.data.retrofit
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

@@ -1,6 +1,5 @@
-package com.example.covstats.room.models
+package com.example.covstats.data.room.models
 
-import androidx.annotation.Nullable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 

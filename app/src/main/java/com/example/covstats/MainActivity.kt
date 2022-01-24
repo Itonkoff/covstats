@@ -9,21 +9,17 @@ import android.widget.Spinner
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
-import com.example.covstats.viewmodels.StatsViewModel
+import com.example.covstats.viewmodels.CovStatsViewModel
+import com.example.covstats.viewmodels.CovStatsViewModelFactory
 
 class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
-    val viewModel: StatsViewModel by viewModels()
+    private val viewModel: CovStatsViewModel by viewModels{
+        CovStatsViewModelFactory((application as CovStatsApplication).repository)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        viewModel.getUpdatedStatsFromNetwork()
-
-        viewModel.apiResponse.observe(this, Observer { response ->
-            viewModel.clearDb()
-            viewModel.updateDb(response)
-        })
 
         val spinner = findViewById<Spinner>(R.id.spinner)
         viewModel.statistics.observe(this, Observer { statistic ->

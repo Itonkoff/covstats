@@ -1,6 +1,6 @@
-package com.example.covstats.retrofit
+package com.example.covstats.data.retrofit
 
-import com.example.covstats.retrofit.models.ApiResponse
+import com.example.covstats.data.retrofit.models.ApiResponse
 import retrofit2.http.GET
 import retrofit2.http.Headers
 

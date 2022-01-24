@@ -1,12 +1,10 @@
-package com.example.covstats.room
+package com.example.covstats.data.room
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.room.migration.Migration
-import androidx.sqlite.db.SupportSQLiteDatabase
-import com.example.covstats.room.models.Statistic
+import com.example.covstats.data.room.models.Statistic
 
 @Database(entities = [Statistic::class], version = 1)
 abstract class Db : RoomDatabase() {
